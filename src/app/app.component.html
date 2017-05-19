@@ -1,3 +1,130 @@
-<h1>
-  {{title}}
-</h1>
+<div class="four wide column center aligned">
+	<!--<div class="ui three item menu">
+		<a class="item active">Editorials</a>
+		<a class="item">Reviews</a>
+		<a class="item">Upcoming Events</a>
+	</div>-->
+	<div class="bookList">
+		<h1>组件嵌套传值</h1>
+		<app-product-list [productList]="products" (onProductselected)="productWasSelected($event)"></app-product-list>
+		<h1>内置指令</h1>
+		<table class="ui celled striped table">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>英雄名称</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td colspan="2">
+						<h3>ngFor显示所有英雄</h3>
+					</td>
+				</tr>
+				<tr *ngFor="let item of heros;let i=index">
+					<td>
+						{{i}}
+					</td>
+					<td>
+						<h4 class="ui image header">
+	         			{{item}}
+		      </h4>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<h3>ngIf判断显示偶数位置英雄</h3>
+					</td>
+				</tr>
+				<tr *ngFor="let item of heros;let i=index">
+					<td>
+						{{i}}
+					</td>
+					<td>
+						<h4 class="ui image header" *ngIf="i%2==0">
+	         			{{item}}
+		      </h4>
+					</td>
+				</tr>
+
+				<tr>
+					<td colspan="2">
+						<h1>ngSwitch判断显示前三位的英雄&ngNonBindable来指定不绑定某些元素</h1>
+					</td>
+				</tr>
+				<tr *ngFor="let item of heros;let i=index">
+					<td>
+						{{i}}
+					</td>
+					<td>
+						<h4 class="ui image header" [ngSwitch]="i">
+	         		 <span *ngSwitchCase="0">{{item}}</span>
+	         		 <span *ngSwitchCase="1">{{item}}</span>
+	         		 <span *ngSwitchCase="2">{{item}}</span>
+	         		 <span *ngSwitchDefault ngNonBindable>{{item}}</span>
+		      	</h4>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<h1>ngStyle设置各行变色&ngClass设置阴影</h1>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<button class="ui google plus button" (click)="set(fontSize.value,fontColor.value)">确定设置</button>
+					</td>
+					<td>
+						<button class="positive ui button" (click)="setShadow()">{{this.shadow?'不添加阴影':'添加阴影'}}</button>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<form class="ui form">
+							<div class="field">
+								<label>设置字体大小（单位:px）</label>
+								<input type="text" #fontSize placeholder="设置字体大小（单位:px）">
+							</div>
+						</form>
+					</td>
+					<td>
+						<form class="ui form">
+							<div class="field">
+								<label>设置字体颜色</label>
+								<input type="text" #fontColor placeholder="设置字体颜色">
+							</div>
+						</form>
+					</td>
+				</tr>
+				<tr *ngFor="let item of heros;let i=index" [ngClass]="{'shadow':this.shadow}">
+					<td [style.background-color]="i%2>0?'skyblue':'green'" [style.font-size.px]="this.size" [style.color]="this.color">
+						{{i}}
+					</td>
+					<td [style.background-color]="i%2>0?'skyblue':'green'" [style.font-size.px]="this.size" [style.color]="this.color">
+						{{item}}
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<h1>表单</h1>
+		
+		<form class="ui form">
+			<div class="field">
+				<label>First Name</label>
+				<input type="text" name="first-name" placeholder="First Name">
+			</div>
+			<div class="field">
+				<label>Last Name</label>
+				<input type="text" name="last-name" placeholder="Last Name">
+			</div>
+			<div class="field">
+				<div class="ui checkbox">
+					<input type="checkbox" tabindex="0" class="hidden">
+					<label>I agree to the Terms and Conditions</label>
+				</div>
+			</div>
+			<button class="ui button blue" type="submit">Submit</button>
+		</form>
+
+	</div>
+</div>
